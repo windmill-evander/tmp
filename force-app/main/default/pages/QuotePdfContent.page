@@ -1,0 +1,40 @@
+<apex:page standardController="Quote" extensions="QuotePdfController" renderAs="pdf">
+    <h1>Quote Details</h1>
+    
+    <p><strong>Quote Number:</strong> {!quote.QuoteNumber}</p>
+    <p><strong>Account:</strong> {!quote.Account.Name}</p>
+    <p><strong>Opportunity:</strong> {!quote.Opportunity.Name}</p>
+
+    <h2>Financial Summary</h2>
+    <p><strong>Grand Total:</strong> {!quote.GrandTotal}</p>
+    <p><strong>Total Price:</strong> {!quote.TotalPrice}</p>
+    <p><strong>Discount:</strong> {!quote.Discount}%</p>
+    <p><strong>Subtotal:</strong> {!quote.Subtotal}</p>
+
+    <h2>Product Images</h2>
+    <apex:repeat value="{!quote.QuoteLineItems}" var="lineItem">
+        <apex:variable var="productImageUrl" value="{!productImages[lineItem.Product2Id]}"/>
+        <apex:image url="{!productImageUrl}" alt="image" width="100" height="100" />
+        <p><strong>IMG:</strong> {!productImageUrl}</p>
+        <p><strong>QuoteLineItem Id:</strong> {!lineItem.Product2.Id}</p>
+        <p><strong>Product2.Name:</strong> {!lineItem.Product2.Name}</p>
+        <p><strong>Product2Id:</strong> {!lineItem.Product2Id}</p>
+    </apex:repeat>
+
+    <h2>Shipping Address</h2>
+    <p><strong>Ship To Name:</strong> {!quote.ShippingName}</p>
+    <p><strong>Address:</strong> LATER!!!!!!!!!!!!!!</p>
+
+    <h2>Billing Address</h2>
+    <p><strong>Bill To Name:</strong> {!quote.BillingName}</p>
+    <p><strong>Address:</strong> LATER!!!!!!!!!!!!!!</p>
+    <p><strong>Contact Name:</strong> {!quote.Contact.Name}</p>
+
+    <p><strong>Email:</strong> {!quote.CreatedBy.Email}</p>
+    <h2>Prepared By</h2>
+    <p><strong>Name:</strong> {!quote.CreatedBy.Name}</p>
+
+    <h2>Additional Information</h2>
+    <p><strong>Expiration Date:</strong> {!quote.ExpirationDate}</p>
+    <p><strong>Created Date:</strong> {!quote.CreatedDate}</p>
+</apex:page>

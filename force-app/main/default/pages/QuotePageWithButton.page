@@ -1,0 +1,10 @@
+<apex:page controller="QuotePdfController">
+    <apex:form >
+        <apex:outputPanel id="pdfPanel">
+            <apex:pageMessages />
+            <iframe src="/apex/QuotePdfContent?id={!quote.Id}" width="100%" height="600px" frameborder="0"></iframe>
+        </apex:outputPanel>
+        <apex:commandButton value="Save and Email Quote" action="{!emailPdf}" rerender="pdfPanel" />
+        <apex:commandButton value="Save to Quote" action="{!savePdf}" rerender="pdfPanel" />
+    </apex:form>
+</apex:page>
